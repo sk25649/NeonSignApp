@@ -4,5 +4,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="Add_Text">Add Message</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="message">Message</string>
 
 </resources>
