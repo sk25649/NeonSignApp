@@ -2,8 +2,18 @@
 
     <string name="app_name">NeonApp</string>
     <string name="hello_world">Hello world!</string>
-    <string name="Add_Text">Add Message</string>
+    <string name="about">About</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="message">Message</string>
+    <string name="Message">Message: </string>
+    <string name="Size">Size: </string>
+    <string name="Color">Color: </string>
+    <string-array name="user_color">
+        <item>Red</item>
+        <item>Teal</item>
+        <item>Pink</item>
+        <item>Yellow</item>
+        <item>Purple</item>
+    </string-array>
 
 </resources>
