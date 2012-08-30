@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- id from main_screen.xml will have user_ in front of each attribute -->
+
+<TableLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:stretchColumns="1"
+    android:orientation="horizontal" >
+    
+    <TableRow>
+        <TextView android:text="@string/Message"/>
+        <EditText android:id="@+id/user_message" />    
+    </TableRow>
+    
+    <TableRow >
+        <TextView android:text="@string/Size" />
+        <EditText android:id="@+id/user_size" />
+    </TableRow>
+    
+    <TableRow>
+        <TextView android:text="@string/Color" />
+        <Spinner android:id="@+id/user_color"
+                 android:layout_width="fill_parent"
+                 android:layout_height="wrap_content" />"
+    </TableRow>
+
+    <Button
+        android:id="@+id/user_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="NeonIT!" />
+    
+</TableLayout>
