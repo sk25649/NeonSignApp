@@ -31,6 +31,16 @@
             </intent-filter>
         </activity>
         
+        <activity
+            android:name="ColorPickerDialog"
+            android:label="@string/title_activity_main" >
+            <intent-filter>
+                <action android:name="com.siwan.colorpick" />
+
+                <category android:name="android.intent.category.color" />
+            </intent-filter>
+        </activity>
+        
     </application>
 
 </manifest>

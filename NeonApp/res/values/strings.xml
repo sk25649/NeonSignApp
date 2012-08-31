@@ -15,5 +15,7 @@
         <item>Yellow</item>
         <item>Purple</item>
     </string-array>
+    <string name="PickColor">Please pick a color</string>
+    <string name="confirm">Confirm Color</string>
 
 </resources>

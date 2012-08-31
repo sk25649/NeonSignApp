@@ -10,19 +10,30 @@
     
     <TableRow>
         <TextView android:text="@string/Message"/>
-        <EditText android:id="@+id/user_message" />    
+
+        <EditText 
+            android:id="@+id/user_message"
+            android:inputType="text" 
+        />
+    
     </TableRow>
     
     <TableRow >
         <TextView android:text="@string/Size" />
-        <EditText android:id="@+id/user_size" />
+
+        <EditText
+            android:id="@+id/user_size"
+            android:inputType="number" 
+        />
+
     </TableRow>
     
     <TableRow>
         <TextView android:text="@string/Color" />
         <Spinner android:id="@+id/user_color"
                  android:layout_width="fill_parent"
-                 android:layout_height="wrap_content" />"
+                 android:layout_height="wrap_content" 
+        />
     </TableRow>
 
     <Button
@@ -30,6 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:text="NeonIT!" />
+        android:text="NeonIT!" 
+    />
     
 </TableLayout>

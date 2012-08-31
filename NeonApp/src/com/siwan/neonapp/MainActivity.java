@@ -3,6 +3,8 @@ package com.siwan.neonapp;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.content.res.Resources;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,8 +22,10 @@ public class MainActivity extends Activity {
 	
 	//make UI global
 	Spinner spinner;
-	TextView neon_msg;
+	EditText neon_msg;
+	EditText neon_size;
 	Button btn;
+	String selectedColor;
 	
 
     @Override
@@ -30,7 +35,8 @@ public class MainActivity extends Activity {
         
       	//connect UI with coding
     	spinner = (Spinner) findViewById(R.id.user_color);
-        neon_msg = (TextView) findViewById(R.id.display);
+        neon_msg = (EditText) findViewById(R.id.user_message);
+        neon_size = (EditText) findViewById(R.id.user_size);
         btn = (Button)findViewById(R.id.user_save);
         
         
@@ -52,8 +58,11 @@ public class MainActivity extends Activity {
     public class userOnItemSelectedListener  implements OnItemSelectedListener{
     	
     	public void onItemSelected(AdapterView<?> parent, View view, int pos, long id){
-    		//for testing purpose, toast selected items
-    		//Toast.makeText(parent.getContext(), "Selected " + parent.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+    		selectedColor = parent.getSelectedItem().toString();
+    		
+    		//let's try this
+    		//Intent colorPicker = new Intent("com.siwan.colorpick");
+    		//startActivity(colorPicker);
     		
     	}
 
@@ -63,12 +72,28 @@ public class MainActivity extends Activity {
     	
     }
     
+    //Upon clicking NeonIT! button...
     public class btnOnClickListern implements OnClickListener{
 
 		public void onClick(View arg0) {
-			Toast.makeText(getBaseContext(), "Enjoy", Toast.LENGTH_SHORT).show();
-			//setContentView(R.layout.message_screen);
+			
+			//String dummy = neon_size.getText().toString();
+			//int size = Integer.parseInt(dummy);
+			int size = 1;
+			
+			//create custom bundle
+			Bundle bundle = new Bundle();
+			bundle.putString("message", neon_msg.getText().toString()); 
+			bundle.putInt("size", size);
+			bundle.putString("color", selectedColor);
+			
+			//create a new intent
 			Intent i = new Intent("com.siwan.message");
+			
+			//put bundle into intent
+			i.putExtra("bundle", bundle);
+			
+			//fire up new activity
 			startActivity(i);
 		}
 		
