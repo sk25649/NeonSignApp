@@ -28,7 +28,6 @@ public final class R {
     }
     public static final class id {
         public static final int about=0x7f090001;
-        public static final int addText=0x7f090007;
         public static final int display=0x7f090000;
         public static final int ratingBar1=0x7f090006;
         public static final int user_color=0x7f090004;
@@ -46,10 +45,10 @@ public final class R {
         public static final int activity_main=0x7f080000;
     }
     public static final class string {
-        public static final int Add_Text=0x7f050002;
         public static final int Color=0x7f050007;
         public static final int Message=0x7f050005;
         public static final int Size=0x7f050006;
+        public static final int about=0x7f050002;
         public static final int app_name=0x7f050000;
         public static final int hello_world=0x7f050001;
         public static final int message=0x7f050004;
