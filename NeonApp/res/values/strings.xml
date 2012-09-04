@@ -18,5 +18,8 @@
     <string name="PickColor">Please pick a color</string>
     <string name="confirm">Confirm Color</string>
     <string name="Blink">Blink</string>
+    <string name="bold">Bold</string>
+    <string name="message_hint">Enter a message</string>
+    <string name="size_hint">Enter a size</string>
 
 </resources>

@@ -93,8 +93,11 @@ public class MainActivity extends Activity {
     	
     	checked = ((CheckBox)view).isChecked();
     	switch(view.getId()){
-    	case R.id.blinking:
-    		checkbox_result[0] = checked;
+	    	case R.id.blinking:
+	    		checkbox_result[0] = checked;
+	    	
+	    	case R.id.bold:
+	    		checkbox_result[1] = checked;
     	}
     	
     }
@@ -104,13 +107,11 @@ public class MainActivity extends Activity {
     public class btnOnClickListener implements OnClickListener{
 
 		public void onClick(View arg0) {
-			int size = 0;
-			
+			int size = 1;
+			//String checker = "";
 			String dummy = neon_size.getText().toString();
-			if(dummy != ""){
+			if(!(dummy.contains(""))){
 				size = Integer.parseInt(dummy);
-			}else{
-				
 			}
 			
 			//create custom bundle
@@ -126,13 +127,14 @@ public class MainActivity extends Activity {
 			//put results into bundle
 			bundle.putBooleanArray("checkbox", checkbox_result);
 			
-			if(neon_msg.getText() != null){
+			if(!(neon_msg.getText().toString().matches(""))){
+				//String test = neon_msg.getText().toString();
 				bundle.putString("message", neon_msg.getText().toString()); 
 			}else{
-				bundle.putString("Message", "Si Wan Kim rocks :)");
+				bundle.putString("message", "Si Wan Kim rocks :)");
 			}
 			
-			if(size != 0){
+			if(size != 1){
 				bundle.putInt("size", size);
 			}else{
 				bundle.putInt("size", 50);

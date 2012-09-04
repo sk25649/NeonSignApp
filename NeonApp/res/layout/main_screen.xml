@@ -6,30 +6,37 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:stretchColumns="1"
-    android:orientation="horizontal" >
+    android:orientation="horizontal" 
+    android:background="@color/Black">
     
     <TableRow>
-        <TextView android:text="@string/Message"/>
+        <TextView android:text="@string/Message" android:textColor="@color/White"/>
 
         <EditText 
             android:id="@+id/user_message"
-            android:inputType="text" 
+            android:inputType="text"
+            android:cursorVisible="true"
+            android:hint="@string/message_hint"
+            android:textColor="@color/White" 
         />
     
     </TableRow>
     
     <TableRow >
-        <TextView android:text="@string/Size" />
+        <TextView android:text="@string/Size" android:textColor="@color/White"/>
 
         <EditText
             android:id="@+id/user_size"
-            android:inputType="number" 
+            android:inputType="number"
+            android:cursorVisible="true"
+            android:hint="@string/size_hint"
+            android:textColor="@color/White"
         />
 
     </TableRow>
     
     <TableRow>
-        <TextView android:text="@string/Color" />      	<Button android:id="@+id/user_picked"
+        <TextView android:text="@string/Color" android:textColor="@color/White"/>      	<Button android:id="@+id/user_picked"
       			android:clickable="true"
       			android:layout_width="wrap_content"
       			android:layout_height="wrap_content"
@@ -38,14 +45,26 @@
 
     </TableRow>
     
-    <CheckBox 
-   		android:id="@+id/blinking"
-   		android:text="@string/Blink"
-   		android:onClick="onCheckboxClicked"    
-    />
+    <TableRow>
+	    <CheckBox
+	        android:textColor="@color/White" 
+	   		android:id="@+id/blinking"
+	   		android:text="@string/Blink"
+	   		android:onClick="onCheckboxClicked" 
+	    />
+	    
+	    <CheckBox 
+	        android:textColor="@color/White"
+	    	android:id="@+id/bold"
+	    	android:text="@string/bold"
+	    	android:onClick="onCheckboxClicked"	 
+	   	/>
+    </TableRow>"
+    
     
 
     <Button
+        android:textColor="@color/White"
         android:id="@+id/user_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

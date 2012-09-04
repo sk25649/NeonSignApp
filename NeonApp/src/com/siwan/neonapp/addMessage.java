@@ -66,6 +66,10 @@ public class addMessage extends Activity {
 			display.setVisibility(View.VISIBLE);
 		}
 		*/
+		
+		if(result[1]){
+			display.setTextAppearance(getApplicationContext(), R.style.Bold);
+		}
 	}
     
 	
