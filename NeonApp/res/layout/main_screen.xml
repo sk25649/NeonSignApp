@@ -29,19 +29,22 @@
     </TableRow>
     
     <TableRow>
-        <TextView android:text="@string/Color" />
-        <Spinner android:id="@+id/user_color"
-                 android:layout_width="fill_parent"
-                 android:layout_height="wrap_content" 
-        />
+        <TextView android:text="@string/Color" />      	<Button android:id="@+id/user_picked"
+      			android:clickable="true"
+      			android:layout_width="wrap_content"
+      			android:layout_height="wrap_content"
+      			android:layout_marginRight="2dp"	
+      	/>
+
     </TableRow>
 
     <Button
         android:id="@+id/user_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
         android:textStyle="bold"
         android:text="NeonIT!" 
     />
-    
+
 </TableLayout>

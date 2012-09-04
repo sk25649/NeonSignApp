@@ -1,7 +1,10 @@
 package com.siwan.neonapp;
 
+import yuku.ambilwarna.AmbilWarnaDialog;
+import yuku.ambilwarna.AmbilWarnaDialog.OnAmbilWarnaListener;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
@@ -14,6 +17,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,12 +25,18 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
 	
 	//make UI global
-	Spinner spinner;
+	//Spinner spinner;
 	EditText neon_msg;
 	EditText neon_size;
 	Button btn;
+	Button btn2;
 	String selectedColor;
+	AmbilWarnaDialog dialog;
+	Object dialog_needed;
 	
+	//predefined values
+    int initialColor = 0xFFFFFFFF; //white
+    int finalColor = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,75 +44,84 @@ public class MainActivity extends Activity {
         setContentView(R.layout.main_screen);
         
       	//connect UI with coding
-    	spinner = (Spinner) findViewById(R.id.user_color);
+    	//spinner = (Spinner) findViewById(R.id.user_color);
         neon_msg = (EditText) findViewById(R.id.user_message);
         neon_size = (EditText) findViewById(R.id.user_size);
         btn = (Button)findViewById(R.id.user_save);
+        btn2 = (Button)findViewById(R.id.user_picked); 
         
-        
-        //Initialize Spinner for colors
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.user_color, android.R.layout.simple_spinner_dropdown_item);
-        //Toast.makeText(getBaseContext(), adapter.getItem(0), Toast.LENGTH_SHORT).show();
-        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-        spinner.setAdapter(adapter);
-        
-        //upon user selection of a color
-        spinner.setOnItemSelectedListener((OnItemSelectedListener) new userOnItemSelectedListener());
-        
+        //initialize color for view
+        btn2.setBackgroundColor(initialColor);
         
         //Need to save user's input
-        btn.setOnClickListener(new btnOnClickListern());
+        btn.setOnClickListener(new btnOnClickListener());
+        btn2.setOnClickListener(new onClickListener(this));
+        
     }
     
-    // I might even need this... will find out later
-    public class userOnItemSelectedListener  implements OnItemSelectedListener{
-    	
-    	public void onItemSelected(AdapterView<?> parent, View view, int pos, long id){
-    		selectedColor = parent.getSelectedItem().toString();
-    		
-    		//let's try this
-    		//Intent colorPicker = new Intent("com.siwan.colorpick");
-    		//startActivity(colorPicker);
-    		
+    public class onClickListener implements OnClickListener {
+    	public onClickListener(Object object) {
+    		dialog_needed = object;
     	}
 
-		public void onNothingSelected(AdapterView<?> arg0) {
-			//do nothing
-		}
-    	
+		public void onClick(View v) {
+			dialog = new AmbilWarnaDialog((Context) dialog_needed, initialColor, new OnAmbilWarnaListener(){
+	            public void onOk(AmbilWarnaDialog dialog, int color) {
+	                    // color is the color selected by the user.
+	            		finalColor = color;
+	            		initialColor = color;
+	            		//update the color accordingly
+	                    btn2.setBackgroundColor(color);
+	            }
+	                    
+	            public void onCancel(AmbilWarnaDialog dialog) {
+	                    // cancel was selected by the user
+	            }
+	        });
+	        dialog.show();
+		}	
     }
+   
     
     //Upon clicking NeonIT! button...
-    public class btnOnClickListern implements OnClickListener{
+    public class btnOnClickListener implements OnClickListener{
 
 		public void onClick(View arg0) {
 			
-			//String dummy = neon_size.getText().toString();
-			//int size = Integer.parseInt(dummy);
-			int size = 1;
+			String dummy = neon_size.getText().toString();
+			int size = Integer.parseInt(dummy);
+			Toast.makeText(getBaseContext(), dummy, Toast.LENGTH_SHORT).show();
 			
 			//create custom bundle
 			Bundle bundle = new Bundle();
 			bundle.putString("message", neon_msg.getText().toString()); 
 			bundle.putInt("size", size);
-			bundle.putString("color", selectedColor);
+			bundle.putInt("color", finalColor);
 			
 			//create a new intent
 			Intent i = new Intent("com.siwan.message");
 			
 			//put bundle into intent
-			i.putExtra("bundle", bundle);
+			i.putExtras(bundle);
 			
 			//fire up new activity
 			startActivity(i);
 		}
+
+		
 		
     }
+
     
     @Override     
     public boolean onCreateOptionsMenu(Menu menu){
     	new MenuInflater(this).inflate(R.menu.activity_main, menu);
     	return(super.onCreateOptionsMenu(menu));
     }
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		// do nothing for now...
+		
+	}
     
 }
