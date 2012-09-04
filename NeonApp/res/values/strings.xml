@@ -17,5 +17,6 @@
     </string-array>
     <string name="PickColor">Please pick a color</string>
     <string name="confirm">Confirm Color</string>
+    <string name="Blink">Blink</string>
 
 </resources>

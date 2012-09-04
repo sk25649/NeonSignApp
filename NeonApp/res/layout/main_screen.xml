@@ -37,6 +37,13 @@
       	/>
 
     </TableRow>
+    
+    <CheckBox 
+   		android:id="@+id/blinking"
+   		android:text="@string/Blink"
+   		android:onClick="onCheckboxClicked"    
+    />
+    
 
     <Button
         android:id="@+id/user_save"

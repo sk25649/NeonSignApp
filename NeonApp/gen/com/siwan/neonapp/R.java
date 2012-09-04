@@ -38,7 +38,7 @@ public final class R {
         public static final int ic_launcher=0x7f020006;
     }
     public static final class id {
-        public static final int about=0x7f0a000f;
+        public static final int about=0x7f0a0010;
         public static final int ambilwarna_cursor=0x7f0a0004;
         public static final int ambilwarna_dialogView=0x7f0a0000;
         public static final int ambilwarna_pref_widget_kotak=0x7f0a0009;
@@ -49,10 +49,11 @@ public final class R {
         public static final int ambilwarna_viewSatBri=0x7f0a0002;
         public static final int ambilwarna_warnaBaru=0x7f0a0008;
         public static final int ambilwarna_warnaLama=0x7f0a0007;
-        public static final int display=0x7f0a000e;
+        public static final int blinking=0x7f0a000d;
+        public static final int display=0x7f0a000f;
         public static final int user_message=0x7f0a000a;
         public static final int user_picked=0x7f0a000c;
-        public static final int user_save=0x7f0a000d;
+        public static final int user_save=0x7f0a000e;
         public static final int user_size=0x7f0a000b;
     }
     public static final class layout {
@@ -65,6 +66,7 @@ public final class R {
         public static final int activity_main=0x7f090000;
     }
     public static final class string {
+        public static final int Blink=0x7f06000a;
         public static final int Color=0x7f060007;
         public static final int Message=0x7f060005;
         public static final int PickColor=0x7f060008;

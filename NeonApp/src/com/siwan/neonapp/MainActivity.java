@@ -1,5 +1,8 @@
 package com.siwan.neonapp;
 
+import java.lang.reflect.Array;
+import java.util.HashMap;
+
 import yuku.ambilwarna.AmbilWarnaDialog;
 import yuku.ambilwarna.AmbilWarnaDialog.OnAmbilWarnaListener;
 import android.os.Bundle;
@@ -16,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -33,6 +37,9 @@ public class MainActivity extends Activity {
 	String selectedColor;
 	AmbilWarnaDialog dialog;
 	Object dialog_needed;
+	CheckBox blink;
+	boolean checked;
+	boolean[] checkbox_result = new boolean[3];
 	
 	//predefined values
     int initialColor = 0xFFFFFFFF; //white
@@ -44,7 +51,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.main_screen);
         
       	//connect UI with coding
-    	//spinner = (Spinner) findViewById(R.id.user_color);
+    	//spinner = (Spinner) findViewById(R.id.user_color);   possibly for font size later...
         neon_msg = (EditText) findViewById(R.id.user_message);
         neon_size = (EditText) findViewById(R.id.user_size);
         btn = (Button)findViewById(R.id.user_save);
@@ -81,22 +88,62 @@ public class MainActivity extends Activity {
 	        dialog.show();
 		}	
     }
+    
+    public void onCheckboxClicked(View view){
+    	
+    	checked = ((CheckBox)view).isChecked();
+    	switch(view.getId()){
+    	case R.id.blinking:
+    		checkbox_result[0] = checked;
+    	}
+    	
+    }
    
     
     //Upon clicking NeonIT! button...
     public class btnOnClickListener implements OnClickListener{
 
 		public void onClick(View arg0) {
+			int size = 0;
 			
 			String dummy = neon_size.getText().toString();
-			int size = Integer.parseInt(dummy);
-			Toast.makeText(getBaseContext(), dummy, Toast.LENGTH_SHORT).show();
+			if(dummy != ""){
+				size = Integer.parseInt(dummy);
+			}else{
+				
+			}
 			
 			//create custom bundle
+			/**********************************************************************************************
+			 * This makes sure that information is filled before starting addMessage activity
+			 * 
+			 * 
+			 ***********************************************************************************************
+			 */
+			
 			Bundle bundle = new Bundle();
-			bundle.putString("message", neon_msg.getText().toString()); 
-			bundle.putInt("size", size);
-			bundle.putInt("color", finalColor);
+			
+			//put results into bundle
+			bundle.putBooleanArray("checkbox", checkbox_result);
+			
+			if(neon_msg.getText() != null){
+				bundle.putString("message", neon_msg.getText().toString()); 
+			}else{
+				bundle.putString("Message", "Si Wan Kim rocks :)");
+			}
+			
+			if(size != 0){
+				bundle.putInt("size", size);
+			}else{
+				bundle.putInt("size", 50);
+			}
+			
+			if(finalColor != 0){
+				bundle.putInt("color", finalColor);
+			}else{
+				bundle.putInt("color", initialColor);
+			}
+			
 			
 			//create a new intent
 			Intent i = new Intent("com.siwan.message");
@@ -107,9 +154,7 @@ public class MainActivity extends Activity {
 			//fire up new activity
 			startActivity(i);
 		}
-
-		
-		
+	
     }
 
     
