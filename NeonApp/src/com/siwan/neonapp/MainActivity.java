@@ -1,6 +1,5 @@
 package com.siwan.neonapp;
 
-import java.lang.reflect.Array;
 import java.util.HashMap;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
@@ -38,6 +37,8 @@ public class MainActivity extends Activity {
 	AmbilWarnaDialog dialog;
 	Object dialog_needed;
 	CheckBox blink;
+	CheckBox move;
+	CheckBox bold;
 	boolean checked;
 	boolean[] checkbox_result = new boolean[3];
 	
@@ -55,7 +56,10 @@ public class MainActivity extends Activity {
         neon_msg = (EditText) findViewById(R.id.user_message);
         neon_size = (EditText) findViewById(R.id.user_size);
         btn = (Button)findViewById(R.id.user_save);
-        btn2 = (Button)findViewById(R.id.user_picked); 
+        btn2 = (Button)findViewById(R.id.user_picked);
+        blink = (CheckBox)findViewById(R.id.blinking);
+        move = (CheckBox)findViewById(R.id.move);
+        bold = (CheckBox)findViewById(R.id.bold);
         
         //initialize color for view
         btn2.setBackgroundColor(initialColor);
@@ -98,6 +102,9 @@ public class MainActivity extends Activity {
 	    	
 	    	case R.id.bold:
 	    		checkbox_result[1] = checked;
+	    		
+	    	case R.id.move:
+	    		checkbox_result[2] = checked;
     	}
     	
     }
@@ -115,11 +122,12 @@ public class MainActivity extends Activity {
 			}
 			
 			//create custom bundle
+			
 			/**********************************************************************************************
 			 * This makes sure that information is filled before starting addMessage activity
 			 * 
 			 * 
-			 ***********************************************************************************************
+			 **********************************************************************************************
 			 */
 			
 			Bundle bundle = new Bundle();
@@ -128,7 +136,6 @@ public class MainActivity extends Activity {
 			bundle.putBooleanArray("checkbox", checkbox_result);
 			
 			if(!(neon_msg.getText().toString().matches(""))){
-				//String test = neon_msg.getText().toString();
 				bundle.putString("message", neon_msg.getText().toString()); 
 			}else{
 				bundle.putString("message", "Si Wan Kim rocks :)");

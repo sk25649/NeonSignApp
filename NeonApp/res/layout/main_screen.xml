@@ -45,24 +45,35 @@
 
     </TableRow>
     
-    <TableRow>
-	    <CheckBox
-	        android:textColor="@color/White" 
-	   		android:id="@+id/blinking"
-	   		android:text="@string/Blink"
-	   		android:onClick="onCheckboxClicked" 
-	    />
+	
+        
+    <TableLayout >   
+        <TableRow>
+		    <CheckBox
+		        android:textColor="@color/White" 
+		   		android:id="@+id/blinking"
+		   		android:text="@string/Blink"
+		   		android:onClick="onCheckboxClicked" 
+		    />
+		    
+		    
+		    <CheckBox 
+		        android:textColor="@color/White"
+		    	android:id="@+id/bold"
+		    	android:text="@string/bold"
+		    	android:onClick="onCheckboxClicked"	 
+		   	/>
+		    
+		    <CheckBox 
+		    	android:textColor="@color/White"
+		    	android:id="@+id/move"
+		    	android:text="@string/move"
+		    	android:onClick="onCheckboxClicked"
+		    />					
 	    
-	    <CheckBox 
-	        android:textColor="@color/White"
-	    	android:id="@+id/bold"
-	    	android:text="@string/bold"
-	    	android:onClick="onCheckboxClicked"	 
-	   	/>
-    </TableRow>"
+		</TableRow>
+    </TableLayout>
     
-    
-
     <Button
         android:textColor="@color/White"
         android:id="@+id/user_save"
@@ -70,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
         android:textStyle="bold"
-        android:text="NeonIT!" 
+        android:text="@string/button" 
     />
 
 </TableLayout>

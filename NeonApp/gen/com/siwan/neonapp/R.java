@@ -38,7 +38,7 @@ public final class R {
         public static final int ic_launcher=0x7f020006;
     }
     public static final class id {
-        public static final int about=0x7f0a0011;
+        public static final int about=0x7f0a0012;
         public static final int ambilwarna_cursor=0x7f0a0004;
         public static final int ambilwarna_dialogView=0x7f0a0000;
         public static final int ambilwarna_pref_widget_kotak=0x7f0a0009;
@@ -51,10 +51,11 @@ public final class R {
         public static final int ambilwarna_warnaLama=0x7f0a0007;
         public static final int blinking=0x7f0a000d;
         public static final int bold=0x7f0a000e;
-        public static final int display=0x7f0a0010;
+        public static final int display=0x7f0a0011;
+        public static final int move=0x7f0a000f;
         public static final int user_message=0x7f0a000a;
         public static final int user_picked=0x7f0a000c;
-        public static final int user_save=0x7f0a000f;
+        public static final int user_save=0x7f0a0010;
         public static final int user_size=0x7f0a000b;
     }
     public static final class layout {
@@ -75,10 +76,12 @@ public final class R {
         public static final int about=0x7f060002;
         public static final int app_name=0x7f060000;
         public static final int bold=0x7f06000b;
+        public static final int button=0x7f06000f;
         public static final int confirm=0x7f060009;
         public static final int hello_world=0x7f060001;
         public static final int message=0x7f060004;
         public static final int message_hint=0x7f06000c;
+        public static final int move=0x7f06000e;
         public static final int size_hint=0x7f06000d;
         public static final int title_activity_main=0x7f060003;
     }

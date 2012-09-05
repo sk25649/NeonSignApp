@@ -21,5 +21,7 @@
     <string name="bold">Bold</string>
     <string name="message_hint">Enter a message</string>
     <string name="size_hint">Enter a size</string>
+    <string name="move">Move</string>
+    <string name="button">Create a Sign</string>
 
 </resources>
