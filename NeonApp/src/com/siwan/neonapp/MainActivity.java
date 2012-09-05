@@ -6,6 +6,7 @@ import yuku.ambilwarna.AmbilWarnaDialog;
 import yuku.ambilwarna.AmbilWarnaDialog.OnAmbilWarnaListener;
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -29,23 +30,19 @@ public class MainActivity extends Activity {
 	
 	//make UI global
 	//Spinner spinner;
-	EditText neon_msg;
-	EditText neon_size;
-	Button btn;
-	Button btn2;
+	EditText neon_msg, neon_size;
+	Button btn, btn2;
 	String selectedColor;
 	AmbilWarnaDialog dialog;
 	Object dialog_needed;
-	CheckBox blink;
-	CheckBox move;
-	CheckBox bold;
+	CheckBox blink, move, bold;
 	boolean checked;
 	boolean[] checkbox_result = new boolean[3];
 	
 	//predefined values
     int initialColor = 0xFFFFFFFF; //white
     int finalColor = 0;
-
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
