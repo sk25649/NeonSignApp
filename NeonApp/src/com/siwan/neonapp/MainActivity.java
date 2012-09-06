@@ -43,6 +43,7 @@ public class MainActivity extends Activity {
     int initialColor = 0xFFFFFFFF; //white
     int finalColor = 0;
     
+    // Initialize UIs
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,11 +68,12 @@ public class MainActivity extends Activity {
         
     }
     
+    // onClickListener for color picker dialog
     public class onClickListener implements OnClickListener {
     	public onClickListener(Object object) {
     		dialog_needed = object;
     	}
-
+    	// update the user picked color
 		public void onClick(View v) {
 			dialog = new AmbilWarnaDialog((Context) dialog_needed, initialColor, new OnAmbilWarnaListener(){
 	            public void onOk(AmbilWarnaDialog dialog, int color) {
@@ -90,23 +92,25 @@ public class MainActivity extends Activity {
 		}	
     }
     
+    // updating check_result array upon press of checkboxes
     public void onCheckboxClicked(View view){
     	
     	checked = ((CheckBox)view).isChecked();
     	switch(view.getId()){
 	    	case R.id.blinking:
 	    		checkbox_result[0] = checked;
+	    		break;
 	    	
 	    	case R.id.bold:
 	    		checkbox_result[1] = checked;
+	    		break;
 	    		
 	    	case R.id.move:
 	    		checkbox_result[2] = checked;
+	    		break;
     	}
-    	
     }
    
-    
     //Upon clicking NeonIT! button...
     public class btnOnClickListener implements OnClickListener{
 
@@ -114,7 +118,7 @@ public class MainActivity extends Activity {
 			int size = 1;
 			//String checker = "";
 			String dummy = neon_size.getText().toString();
-			if(!(dummy.contains(""))){
+			if(containsDigit(dummy)){
 				size = Integer.parseInt(dummy);
 			}
 			
@@ -162,15 +166,29 @@ public class MainActivity extends Activity {
 		}
 	
     }
-
     
+    /*
+     * Functionality: testing if size is empty or number or not
+     * 
+     * 
+     */
+    public final boolean containsDigit(final String s){
+    	for(char c: s.toCharArray()){
+    		if(Character.isDigit(c)){
+    			return true;
+    		}
+    	}
+    	
+    	return false;
+    }
+
     @Override     
     public boolean onCreateOptionsMenu(Menu menu){
     	new MenuInflater(this).inflate(R.menu.activity_main, menu);
     	return(super.onCreateOptionsMenu(menu));
     }
+    
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		// do nothing for now...
 		
 	}

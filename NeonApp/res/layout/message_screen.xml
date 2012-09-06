@@ -10,7 +10,7 @@
         android:text="@string/message"
         android:layout_height="fill_parent"
         android:layout_width="fill_parent"
-        android:gravity="center"
+        android:gravity="center|right"
         android:includeFontPadding="false"
      />
          
