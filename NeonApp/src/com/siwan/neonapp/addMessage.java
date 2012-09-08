@@ -1,5 +1,6 @@
 package com.siwan.neonapp;
 
+import android.R.interpolator;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -12,6 +13,7 @@ import android.content.res.TypedArray;
 import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
@@ -20,6 +22,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
+import android.widget.HorizontalScrollView;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,11 +31,14 @@ public class addMessage extends Activity {
 	
 	//initialize UI
     TextView display;
+    HorizontalScrollView hs;
         
 	//initialize values
 	String msg = "";
 	int color = 0;
 	int size = 0;
+	int total_length;
+	int x_true;
 	Intent i;
 	Context context;
 	boolean[] checkbox_result = new boolean[3];
@@ -54,13 +60,13 @@ public class addMessage extends Activity {
         setContentView(R.layout.message_screen);
         
         //Connect UI
+        hs = (HorizontalScrollView)findViewById(R.id.horizontal);
         display = (TextView)findViewById(R.id.display);
-        
-        //context = this.getApplicationContext();
             
         //receive bundle from intent
         Bundle pack = getIntent().getExtras();
         msg = pack.getString("message");
+        msg = "    " + msg;
         color = pack.getInt("color");
         size = pack.getInt("size");
         checkbox_result = pack.getBooleanArray("checkbox");
@@ -70,6 +76,7 @@ public class addMessage extends Activity {
     	display.setTextColor(color);
     	display.setTextSize(size);
     	
+    	//update the message accordingly
     	setCheckedResults(checkbox_result);
     	
     }
@@ -106,6 +113,7 @@ public class addMessage extends Activity {
 		protected String doInBackground(TextView... params) {
 			//initialize animation set
 			AnimationSet as = new AnimationSet(true);
+		
 			
 			//first animation
 			Animation anim = new AlphaAnimation(0.0f, 1.0f);
@@ -118,13 +126,20 @@ public class addMessage extends Activity {
 			Display screenInfo = getWindowManager().getDefaultDisplay();
 			@SuppressWarnings("deprecation")
 			int maxWidth = screenInfo.getWidth();
+			
 			@SuppressWarnings("deprecation")
 			int maxHeight = screenInfo.getHeight();
 			
-			TranslateAnimation sliding = new TranslateAnimation(maxWidth, -maxWidth, 0.0f, 0.0f);
+			display.setMaxWidth(maxWidth*2);
+			x_true = display.getMeasuredWidth();
+			int x_finished = -1*(x_true + maxWidth);
+			
+			TranslateAnimation sliding = new TranslateAnimation(maxWidth, x_finished, 0.0f, 0.0f);
 			sliding.setDuration(7000);
 			sliding.setRepeatMode(Animation.RESTART);
 			sliding.setRepeatCount(Animation.INFINITE);
+			//sliding.setInterpolator(null);
+			
 			
 			//add animations
 			as.addAnimation(anim);
