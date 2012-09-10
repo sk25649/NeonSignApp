@@ -2,17 +2,33 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     android:orientation="horizontal" 
-    android:background="@color/Black">
+    android:background="@color/Black"
+    android:keepScreenOn="true">
+=======
+    android:screenOrientation="landscape" 
+    android:background="@color/Black"
+    android:keepScreenOn="true">
+	
+>>>>>>> c715d79b74b7be57944672c55b80980e2ea48d1e
 
-     <TextView
-        android:id="@+id/display"
-        android:text="@string/message"
-        android:layout_height="fill_parent"
-        android:layout_width="fill_parent"
-        android:gravity="center|right"
-        android:includeFontPadding="false"
-     />
-         
+	<HorizontalScrollView
+	    android:layout_height="fill_parent"
+	    android:layout_width="fill_parent"
+	    android:layout_gravity="center|right"
+	    android:id="@+id/horizontal">        
+		<TextView
+		   android:id="@+id/display"
+		   android:text="@string/message"
+		   android:layout_height="match_parent"
+		   android:layout_width="match_parent"
+		   android:gravity="center|right"
+		   android:includeFontPadding="false"
+		   android:singleLine="true"
+		   android:scrollHorizontally="true"
+		/>
+	</HorizontalScrollView>
+	    
 
 </TableLayout>
