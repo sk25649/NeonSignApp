@@ -3,14 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 <<<<<<< HEAD
+<<<<<<< HEAD
     android:orientation="horizontal" 
     android:background="@color/Black"
     android:keepScreenOn="true">
 =======
+=======
+>>>>>>> c715d79b74b7be57944672c55b80980e2ea48d1e
     android:screenOrientation="landscape" 
     android:background="@color/Black"
     android:keepScreenOn="true">
 	
+<<<<<<< HEAD
+>>>>>>> c715d79b74b7be57944672c55b80980e2ea48d1e
+=======
 >>>>>>> c715d79b74b7be57944672c55b80980e2ea48d1e
 
 	<HorizontalScrollView
