@@ -33,6 +33,7 @@ public class MainActivity extends Activity {
 	EditText neon_msg, neon_size;
 	Button btn, btn2;
 	String selectedColor;
+	String default_msg = "Si Wan Kim rocks :)";
 	AmbilWarnaDialog dialog;
 	Object dialog_needed;
 	CheckBox blink, move, bold;
@@ -137,9 +138,12 @@ public class MainActivity extends Activity {
 			bundle.putBooleanArray("checkbox", checkbox_result);
 			
 			if(!(neon_msg.getText().toString().matches(""))){
-				bundle.putString("message", neon_msg.getText().toString()); 
+				bundle.putString("message", neon_msg.getText().toString());
+				int msg_length = neon_msg.getMeasuredWidth();	//actual msg length
+				bundle.putInt("mWidth", msg_length);
 			}else{
-				bundle.putString("message", "Si Wan Kim rocks :)");
+				bundle.putString("message", default_msg);
+				bundle.putInt("mWidth", 800);
 			}
 			
 			if(size != 1){

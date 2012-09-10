@@ -13,13 +13,18 @@ import android.content.res.TypedArray;
 import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.TransactionTooLargeException;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
+import android.view.animation.Interpolator;
+import android.view.animation.LinearInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
@@ -66,10 +71,10 @@ public class addMessage extends Activity {
         //receive bundle from intent
         Bundle pack = getIntent().getExtras();
         msg = pack.getString("message");
-        msg = "    " + msg;
         color = pack.getInt("color");
         size = pack.getInt("size");
         checkbox_result = pack.getBooleanArray("checkbox");
+        x_true = pack.getInt("mWidth");
         
         //configure the TextView based on user's input    	
         display.setText(msg);
@@ -129,12 +134,11 @@ public class addMessage extends Activity {
 			
 			@SuppressWarnings("deprecation")
 			int maxHeight = screenInfo.getHeight();
+			int length = display.getMeasuredWidth();
 			
-			display.setMaxWidth(maxWidth*2);
-			x_true = display.getMeasuredWidth();
-			int x_finished = -1*(x_true + maxWidth);
 			
-			TranslateAnimation sliding = new TranslateAnimation(maxWidth, x_finished, 0.0f, 0.0f);
+			//TranslateAnimation sliding = new TranslateAnimation(maxWidth, x_finished, 0.0f, 0.0f);
+			TranslateAnimation sliding = new TranslateAnimation(maxWidth, 1.0f, 0.0f, 0.0f);
 			sliding.setDuration(7000);
 			sliding.setRepeatMode(Animation.RESTART);
 			sliding.setRepeatCount(Animation.INFINITE);
@@ -146,6 +150,7 @@ public class addMessage extends Activity {
 			as.addAnimation(sliding);
 			//as.setRepeatMode(Animation.RESTART);
 			//as.setRepeatCount(1000);
+			as.setInterpolator(getApplicationContext(), interpolator.linear);
 			
 			//start animation set			
 			display.startAnimation(as);
