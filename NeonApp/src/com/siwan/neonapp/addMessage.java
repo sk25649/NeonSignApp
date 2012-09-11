@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -61,8 +62,10 @@ public class addMessage extends Activity {
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		super.onCreate(savedInstanceState);
         setContentView(R.layout.message_screen);
+        
         
         //Connect UI
         hs = (HorizontalScrollView)findViewById(R.id.horizontal);
@@ -80,117 +83,9 @@ public class addMessage extends Activity {
         display.setText(msg);
     	display.setTextColor(color);
     	display.setTextSize(size);
-    	
-    	
-    	
+
     }
-	/*
-	public void setCheckedResults(boolean[] result){
-		
-		/* 
-		 * 0 -> blinking
-		 * 1 -> Bold
-		 * 2 -> Move
-		 */
-		/*
-		if(result[0] && result[2]){
-			new BlinkAndMove().execute(display,null,null);
-		}else{
-			if(result[0]){
-				blink();
-			}else {
-				if(result[2]){
-					sliding();
-				}
-			}
-		}
-		
-		// works like a charm
-		if(result[1]){
-			display.setTextAppearance(getApplicationContext(), R.style.Bold);
-		}
-	}
-	*/
-	/*
-	private class BlinkAndMove extends AsyncTask<TextView, Integer, String>{
-
-		@Override
-		protected String doInBackground(TextView... params) {
-			//initialize animation set
-			AnimationSet as = new AnimationSet(true);
-		
-			
-			//first animation
-			Animation anim = new AlphaAnimation(0.0f, 1.0f);
-			anim.setDuration(100); //You can manage the time of the blink with this parameter
-			anim.setStartOffset(25);
-			anim.setRepeatMode(Animation.REVERSE);
-			anim.setRepeatCount(Animation.INFINITE);
-			
-			//second animation
-			Display screenInfo = getWindowManager().getDefaultDisplay();
-			@SuppressWarnings("deprecation")
-			int maxWidth = screenInfo.getWidth();
-			
-			@SuppressWarnings("deprecation")
-			int maxHeight = screenInfo.getHeight();
-			int length = display.getMeasuredWidth();
-			
-			
-			//TranslateAnimation sliding = new TranslateAnimation(maxWidth, x_finished, 0.0f, 0.0f);
-			TranslateAnimation sliding = new TranslateAnimation(maxWidth, 1.0f, 0.0f, 0.0f);
-			sliding.setDuration(7000);
-			sliding.setRepeatMode(Animation.RESTART);
-			sliding.setRepeatCount(Animation.INFINITE);
-			//sliding.setInterpolator(null);
-			
-			
-			//add animations
-			as.addAnimation(anim);
-			as.addAnimation(sliding);
-			//as.setRepeatMode(Animation.RESTART);
-			//as.setRepeatCount(1000);
-			as.setInterpolator(getApplicationContext(), interpolator.linear);
-			
-			//start animation set			
-			display.startAnimation(as);
-			return null;	
-		}
-	}
 	
-	public void blink(){
-
-		Animation anim = new AlphaAnimation(0.0f, 1.0f);
-		anim.setDuration(100); //You can manage the time of the blink with this parameter
-		anim.setStartOffset(25);
-		anim.setRepeatMode(Animation.REVERSE);
-		anim.setRepeatCount(Animation.INFINITE);
-		display.startAnimation(anim);
-
-	}
-	
-	public void sliding(){
-		Display screenInfo = getWindowManager().getDefaultDisplay();
-		/*
-		 * for later API, use .getSize()
-		//Point size = new Point();
-		//screenInfo.getSize(size);
-		*/
-	/*	
-		@SuppressWarnings("deprecation")
-		int maxWidth = screenInfo.getWidth();
-		//@SuppressWarnings("deprecation")
-		//int maxHeight = screenInfo.getHeight();
-		
-		TranslateAnimation sliding = new TranslateAnimation(maxWidth, -maxWidth, 0.0f, 0.0f);
-		display.setAnimation(sliding);
-		sliding.setDuration(7000);
-		sliding.setRepeatMode(Animation.RESTART);
-		sliding.setRepeatCount(Animation.INFINITE);
-		display.startAnimation(sliding);
-	}
-	
-	*/
 	/*
 	 * (non-Javadoc)
 	 * @see android.app.Activity#onKeyDown(int, android.view.KeyEvent)
@@ -223,11 +118,12 @@ public class addMessage extends Activity {
 			if(result[0] && result[2]){
 				new BlinkAndMove().execute(display,null,null);
 			}else{
-				if(result[0]){
-					blink();
+				if(result[2]){
+					sliding();
 				}else {
-					if(result[2]){
-						sliding();
+					if(result[0]){
+						blink();
+						display.setSingleLine(false);
 					}
 				}
 			}
@@ -244,7 +140,6 @@ public class addMessage extends Activity {
 				//initialize animation set
 				AnimationSet as = new AnimationSet(true);
 			
-				
 				//first animation
 				Animation anim = new AlphaAnimation(0.0f, 1.0f);
 				anim.setDuration(100); //You can manage the time of the blink with this parameter
@@ -259,20 +154,16 @@ public class addMessage extends Activity {
 				
 				@SuppressWarnings("deprecation")
 				int maxHeight = screenInfo.getHeight();
+				int endPoint = maxWidth + display.getMeasuredWidth();
 				
-				//TranslateAnimation sliding = new TranslateAnimation(maxWidth, x_finished, 0.0f, 0.0f);
-				TranslateAnimation sliding = new TranslateAnimation(maxWidth, -(maxWidth + display.getMeasuredWidth()), 0.0f, 0.0f);
+				TranslateAnimation sliding = new TranslateAnimation(maxWidth, -(endPoint), 0.0f, 0.0f);
 				sliding.setDuration(7000);
 				sliding.setRepeatMode(Animation.RESTART);
 				sliding.setRepeatCount(Animation.INFINITE);
-				//sliding.setInterpolator(null);
-				
-				
+							
 				//add animations
 				as.addAnimation(anim);
 				as.addAnimation(sliding);
-				//as.setRepeatMode(Animation.RESTART);
-				//as.setRepeatCount(1000);
 				as.setInterpolator(getApplicationContext(), interpolator.linear);
 				
 				//start animation set			
@@ -301,9 +192,8 @@ public class addMessage extends Activity {
 			*/
 			@SuppressWarnings("deprecation")
 			int maxWidth = screenInfo.getWidth();
-			//@SuppressWarnings("deprecation")
-			//int maxHeight = screenInfo.getHeight();
-			TranslateAnimation sliding = new TranslateAnimation(maxWidth, -maxWidth, 0.0f, 0.0f);
+			int endPoint = maxWidth + display.getMeasuredWidth();
+			TranslateAnimation sliding = new TranslateAnimation(maxWidth, -(endPoint), 0.0f, 0.0f);
 			display.setAnimation(sliding);
 			sliding.setDuration(7000);
 			sliding.setRepeatMode(Animation.RESTART);
