@@ -44,9 +44,7 @@
       	/>
 
     </TableRow>
-    
-	
-        
+      
     <TableLayout >   
         <TableRow>
 		    <CheckBox
@@ -55,14 +53,6 @@
 		   		android:text="@string/Blink"
 		   		android:onClick="onCheckboxClicked" 
 		    />
-		    
-		    
-		    <CheckBox 
-		        android:textColor="@color/White"
-		    	android:id="@+id/bold"
-		    	android:text="@string/bold"
-		    	android:onClick="onCheckboxClicked"	 
-		   	/>
 		    
 		    <CheckBox 
 		    	android:textColor="@color/White"

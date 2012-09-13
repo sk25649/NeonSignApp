@@ -61,7 +61,6 @@ public class MainActivity extends Activity {
         btn2 = (Button)findViewById(R.id.user_picked);
         blink = (CheckBox)findViewById(R.id.blinking);
         move = (CheckBox)findViewById(R.id.move);
-        bold = (CheckBox)findViewById(R.id.bold);
         
         //initialize color for view
         btn2.setBackgroundColor(initialColor);
@@ -105,12 +104,8 @@ public class MainActivity extends Activity {
 	    		checkbox_result[0] = checked;
 	    		break;
 	    	
-	    	case R.id.bold:
-	    		checkbox_result[1] = checked;
-	    		break;
-	    		
 	    	case R.id.move:
-	    		checkbox_result[2] = checked;
+	    		checkbox_result[1] = checked;
 	    		break;
     	}
     }

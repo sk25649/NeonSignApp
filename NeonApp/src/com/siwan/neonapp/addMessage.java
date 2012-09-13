@@ -70,6 +70,7 @@ public class addMessage extends Activity {
         //Connect UI
         hs = (HorizontalScrollView)findViewById(R.id.horizontal);
         display = (TextView)findViewById(R.id.display);
+        display.setTextAppearance(getApplicationContext(), R.style.Bold);
             
         //receive bundle from intent
         Bundle pack = getIntent().getExtras();
@@ -111,14 +112,13 @@ public class addMessage extends Activity {
 			
 			/* 
 			 * 0 -> blinking
-			 * 1 -> Bold
-			 * 2 -> Move
+			 * 1 -> Move
 			 */
 			
-			if(result[0] && result[2]){
+			if(result[0] && result[1]){
 				new BlinkAndMove().execute(display,null,null);
 			}else{
-				if(result[2]){
+				if(result[1]){
 					new Sliding().execute(display,null,null);
 				}else {
 					if(result[0]){
@@ -126,11 +126,6 @@ public class addMessage extends Activity {
 						display.setSingleLine(false);
 					}
 				}
-			}
-			
-			// works like a charm
-			if(result[1]){
-				display.setTextAppearance(getApplicationContext(), R.style.Bold);
 			}
 		}
 		class BlinkAndMove extends AsyncTask<TextView, Integer, String>{
@@ -157,7 +152,13 @@ public class addMessage extends Activity {
 				int endPoint = maxWidth + display.getMeasuredWidth();
 				
 				TranslateAnimation sliding = new TranslateAnimation(maxWidth, -(endPoint), 0.0f, 0.0f);
-				sliding.setDuration(7000);
+				sliding.setDuration(6000);
+				/*
+				 * higher the number --> slower animation
+				 * fast: 2000
+				 * normal: 6000
+				 * slow: 10000
+				 */
 				sliding.setRepeatMode(Animation.RESTART);
 				sliding.setRepeatCount(Animation.INFINITE);
 							
