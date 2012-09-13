@@ -41,7 +41,7 @@ public final class R {
         public static final int ic_launcher=0x7f020006;
     }
     public static final class id {
-        public static final int about=0x7f0b0013;
+        public static final int about=0x7f0b0015;
         public static final int ambilwarna_cursor=0x7f0b0004;
         public static final int ambilwarna_dialogView=0x7f0b0000;
         public static final int ambilwarna_pref_widget_kotak=0x7f0b0009;
@@ -52,21 +52,25 @@ public final class R {
         public static final int ambilwarna_viewSatBri=0x7f0b0002;
         public static final int ambilwarna_warnaBaru=0x7f0b0008;
         public static final int ambilwarna_warnaLama=0x7f0b0007;
-        public static final int blinking=0x7f0b000d;
-        public static final int bold=0x7f0b000e;
-        public static final int display=0x7f0b0012;
-        public static final int horizontal=0x7f0b0011;
-        public static final int move=0x7f0b000f;
-        public static final int user_message=0x7f0b000a;
-        public static final int user_picked=0x7f0b000c;
-        public static final int user_save=0x7f0b0010;
-        public static final int user_size=0x7f0b000b;
+        public static final int blinking=0x7f0b000e;
+        public static final int bold=0x7f0b000f;
+        public static final int display=0x7f0b0013;
+        public static final int horizontal=0x7f0b0012;
+        public static final int load_sign=0x7f0b000a;
+        public static final int move=0x7f0b0010;
+        public static final int saving=0x7f0b0014;
+        public static final int user_message=0x7f0b000b;
+        public static final int user_picked=0x7f0b000d;
+        public static final int user_save=0x7f0b0011;
+        public static final int user_size=0x7f0b000c;
     }
     public static final class layout {
         public static final int ambilwarna_dialog=0x7f030000;
         public static final int ambilwarna_pref_widget=0x7f030001;
-        public static final int main_screen=0x7f030002;
-        public static final int message_screen=0x7f030003;
+        public static final int load_sign=0x7f030002;
+        public static final int main_screen=0x7f030003;
+        public static final int message_screen=0x7f030004;
+        public static final int save_sign=0x7f030005;
     }
     public static final class menu {
         public static final int activity_main=0x7f0a0000;
