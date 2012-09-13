@@ -47,8 +47,8 @@ public class addMessage extends Activity {
 	int x_true;
 	Intent i;
 	Context context;
-	boolean[] checkbox_result = new boolean[3];
-	
+	boolean[] checkbox_result = new boolean[2];
+	int move_speed;
 	
 	//initialize intent
     Intent textAnimation = new Intent("com.siwan.textAnimation");
@@ -75,12 +75,15 @@ public class addMessage extends Activity {
         //receive bundle from intent
         Bundle pack = getIntent().getExtras();
         msg = pack.getString("message");
+        msg = "    " + msg;
         color = pack.getInt("color");
         size = pack.getInt("size");
         checkbox_result = pack.getBooleanArray("checkbox");
         x_true = pack.getInt("mWidth");
+        move_speed = pack.getInt("move_speed");
+        move_speed = 1000 * move_speed;
         
-        //configure the TextView based on user's input    	
+        //configure the TextView based on user's input
         display.setText(msg);
     	display.setTextColor(color);
     	display.setTextSize(size);
@@ -114,7 +117,6 @@ public class addMessage extends Activity {
 			 * 0 -> blinking
 			 * 1 -> Move
 			 */
-			
 			if(result[0] && result[1]){
 				new BlinkAndMove().execute(display,null,null);
 			}else{
@@ -152,7 +154,7 @@ public class addMessage extends Activity {
 				int endPoint = maxWidth + display.getMeasuredWidth();
 				
 				TranslateAnimation sliding = new TranslateAnimation(maxWidth, -(endPoint), 0.0f, 0.0f);
-				sliding.setDuration(6000);
+				sliding.setDuration(move_speed);
 				/*
 				 * higher the number --> slower animation
 				 * fast: 2000
@@ -194,7 +196,7 @@ public class addMessage extends Activity {
 				int endPoint = maxWidth + display.getMeasuredWidth();
 				TranslateAnimation sliding = new TranslateAnimation(maxWidth, -(endPoint), 0.0f, 0.0f);
 				display.setAnimation(sliding);
-				sliding.setDuration(7000);
+				sliding.setDuration(move_speed);
 				sliding.setRepeatMode(Animation.RESTART);
 				sliding.setRepeatCount(Animation.INFINITE);
 				display.startAnimation(sliding);
@@ -202,5 +204,15 @@ public class addMessage extends Activity {
 			}
 			
 		}
+
+		
+	@Override
+	protected void onStop() {
+		super.onStop();
+		for(int i = 0; i <2; i++){
+			checkbox_result[i] = false;
+		}
+	
+	}
 
 }

@@ -12,6 +12,7 @@ public final class R {
         public static final int translate=0x7f040000;
     }
     public static final class array {
+        public static final int move_speed=0x7f080001;
         public static final int user_color=0x7f080000;
     }
     public static final class attr {
@@ -52,11 +53,11 @@ public final class R {
         public static final int ambilwarna_viewSatBri=0x7f0b0002;
         public static final int ambilwarna_warnaBaru=0x7f0b0008;
         public static final int ambilwarna_warnaLama=0x7f0b0007;
-        public static final int blinking=0x7f0b000e;
+        public static final int blinking=0x7f0b000f;
         public static final int display=0x7f0b0012;
         public static final int horizontal=0x7f0b0011;
         public static final int load_sign=0x7f0b000a;
-        public static final int move=0x7f0b000f;
+        public static final int move_speed=0x7f0b000e;
         public static final int saving=0x7f0b0013;
         public static final int user_message=0x7f0b000b;
         public static final int user_picked=0x7f0b000d;

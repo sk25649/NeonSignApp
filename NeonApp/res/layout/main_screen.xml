@@ -36,33 +36,35 @@
     </TableRow>
     
     <TableRow>
-        <TextView android:text="@string/Color" android:textColor="@color/White"/>      	<Button android:id="@+id/user_picked"
-      			android:clickable="true"
-      			android:layout_width="wrap_content"
-      			android:layout_height="wrap_content"
-      			android:layout_marginRight="2dp"	
+        
+        <TextView android:text="@string/Color" android:textColor="@color/White"/>      	<Button
+      	    android:id="@+id/user_picked"
+      	    android:clickable="true"
+      	    android:layout_marginRight="300dp"
       	/>
-
+    </TableRow>
+    
+    <TableRow>
+        <TextView android:text="@string/move" android:textColor="@color/White" />
+        <Spinner android:id="@+id/move_speed"
+            	 android:clickable="true"
+            	 android:background="@color/White"
+            	 android:layout_marginTop="5dp"
+            	 android:layout_marginRight="400dp"
+            	 android:layout_width="fill_parent"
+            	 android:layout_height="40dp"
+        />
+        
     </TableRow>
       
-    <TableLayout >   
-        <TableRow>
-		    <CheckBox
-		        android:textColor="@color/White" 
-		   		android:id="@+id/blinking"
-		   		android:text="@string/Blink"
-		   		android:onClick="onCheckboxClicked" 
-		    />
-		    
-		    <CheckBox 
-		    	android:textColor="@color/White"
-		    	android:id="@+id/move"
-		    	android:text="@string/move"
-		    	android:onClick="onCheckboxClicked"
-		    />					
-	    
-		</TableRow>
-    </TableLayout>
+	<TableRow>
+	    <CheckBox
+	        android:textColor="@color/White" 
+	   		android:id="@+id/blinking"
+	   		android:text="@string/Blink"
+	   		android:onClick="onCheckboxClicked" 
+	    />   
+	</TableRow>
     
     <Button
         android:textColor="@color/White"

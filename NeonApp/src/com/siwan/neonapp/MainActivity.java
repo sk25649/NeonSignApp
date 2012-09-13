@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -30,20 +31,22 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
 	
 	//make UI global
-	//Spinner spinner;
+	Spinner spinner;
 	EditText neon_msg, neon_size;
 	Button btn, btn2;
 	String selectedColor;
 	String default_msg = "Si Wan Kim rocks :)";
 	AmbilWarnaDialog dialog;
 	Object dialog_needed;
-	CheckBox blink, move, bold;
+	CheckBox blink;
 	boolean checked;
-	boolean[] checkbox_result = new boolean[3];
+	boolean[] checkbox_result = new boolean[2];	//checking to see if move spinner works
+	int speed_selected;
 	
 	//predefined values
     int initialColor = 0xFFFFFFFF; //white
     int finalColor = 0;
+    
     
     // Initialize UIs
     @Override
@@ -54,13 +57,12 @@ public class MainActivity extends Activity {
        
         
       	//connect UI with coding
-    	//spinner = (Spinner) findViewById(R.id.user_color);   possibly for font size later...
+    	spinner = (Spinner) findViewById(R.id.move_speed);     //   possibly for font size later...
         neon_msg = (EditText) findViewById(R.id.user_message);
         neon_size = (EditText) findViewById(R.id.user_size);
         btn = (Button)findViewById(R.id.user_save);
         btn2 = (Button)findViewById(R.id.user_picked);
         blink = (CheckBox)findViewById(R.id.blinking);
-        move = (CheckBox)findViewById(R.id.move);
         
         //initialize color for view
         btn2.setBackgroundColor(initialColor);
@@ -69,6 +71,36 @@ public class MainActivity extends Activity {
         btn.setOnClickListener(new btnOnClickListener());
         btn2.setOnClickListener(new onClickListener(this));
         
+        //initialize move speed spinner
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.move_speed, android.R.layout.simple_dropdown_item_1line);
+        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        spinner.setAdapter(adapter);
+        
+        //make spinner do something
+        spinner.setOnItemSelectedListener((OnItemSelectedListener) new moveSpeedListener());
+  
+    }
+  
+    public class moveSpeedListener implements OnItemSelectedListener{
+
+		public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+			if(!(containsDigit(parent.getSelectedItem().toString()))){
+				checkbox_result[1] = false;
+				speed_selected = 0;
+			}else{
+				checkbox_result[1] = true;
+				int speed = Integer.parseInt(parent.getSelectedItem().toString());
+				speed_selected = speed;
+				
+			}
+			
+		}
+
+		public void onNothingSelected(AdapterView<?> arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+    	
     }
     
     // onClickListener for color picker dialog
@@ -103,11 +135,7 @@ public class MainActivity extends Activity {
 	    	case R.id.blinking:
 	    		checkbox_result[0] = checked;
 	    		break;
-	    	
-	    	case R.id.move:
-	    		checkbox_result[1] = checked;
-	    		break;
-    	}
+	    }
     }
    
     //Upon clicking NeonIT! button...
@@ -134,7 +162,7 @@ public class MainActivity extends Activity {
 			
 			//put results into bundle
 			bundle.putBooleanArray("checkbox", checkbox_result);
-			
+			bundle.putInt("move_speed", speed_selected);
 			if(!(neon_msg.getText().toString().matches(""))){
 				bundle.putString("message", neon_msg.getText().toString());
 				int msg_length = neon_msg.getMeasuredWidth();	//actual msg length
