@@ -119,11 +119,7 @@ public class addMessage extends Activity {
 				new BlinkAndMove().execute(display,null,null);
 			}else{
 				if(result[2]){
-<<<<<<< HEAD
 					new Sliding().execute(display,null,null);
-=======
-					sliding();
->>>>>>> 5b0d41b083769ed056dfe656497df2f44a8bdb00
 				}else {
 					if(result[0]){
 						blink();
@@ -187,7 +183,6 @@ public class addMessage extends Activity {
 
 		}
 		
-<<<<<<< HEAD
 		class Sliding extends AsyncTask<TextView, Integer, String>{
 
 			@Override
@@ -206,24 +201,5 @@ public class addMessage extends Activity {
 			}
 			
 		}
-=======
-		public void sliding(){
-			Display screenInfo = getWindowManager().getDefaultDisplay();
-			/*
-			 * for later API, use .getSize()
-			//Point size = new Point();
-			//screenInfo.getSize(size);
-			*/
-			@SuppressWarnings("deprecation")
-			int maxWidth = screenInfo.getWidth();
-			int endPoint = maxWidth + display.getMeasuredWidth();
-			TranslateAnimation sliding = new TranslateAnimation(maxWidth, -(endPoint), 0.0f, 0.0f);
-			display.setAnimation(sliding);
-			sliding.setDuration(7000);
-			sliding.setRepeatMode(Animation.RESTART);
-			sliding.setRepeatCount(Animation.INFINITE);
-			display.startAnimation(sliding);
-		}
-		
->>>>>>> 5b0d41b083769ed056dfe656497df2f44a8bdb00
+
 }
